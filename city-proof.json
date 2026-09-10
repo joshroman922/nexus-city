@@ -2,7 +2,7 @@
   "nexusProof": 1,
   "exists": true,
   "city": "NEXUS",
-  "at": "2026-09-10T16:33:01.130Z",
+  "at": "2026-09-10T20:29:03.558Z",
   "buildings": 63,
   "crew": 16,
   "files": 56,
@@ -137,112 +137,112 @@
   ],
   "lastWrites": [
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "city-charter.md",
       "building": "The Library",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "nexus-v2.html",
       "building": "NEXUS",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "Note",
       "building": "NEXUS",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "soma-v1.html",
       "building": "SOMA",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "Talked about",
       "building": "SIGNAL",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "Biophysics folder",
       "building": "Apex Cellular Simulator",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "Note",
       "building": "Apex Cellular Simulator",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "03_SOC_Biohacking",
       "building": "SOC",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "Open app",
       "building": "Gage Block Checker",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "GitHub",
       "building": "Gage Block Checker",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "GitHub",
       "building": "ROUTES Apex",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "Open app",
       "building": "ROUTES Apex",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "kalshi_settlement_core_v2.py",
       "building": "Kalshi 15-min BTC",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "GitHub",
       "building": "Kalshi 15-min BTC",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "Household Ledger",
       "building": "THRESHOLD",
       "by": null
     },
     {
-      "at": "2026-09-10T16:33:01.129Z",
+      "at": "2026-09-10T20:29:03.557Z",
       "kind": "file",
       "file": "ApexForge_Money_Engine.html",
       "building": "ApexForge Money Engine",
@@ -417,7 +417,7 @@
       "open": "https://www.notion.so/39b9030107c2813aaedfc2767ac3c281",
       "race": null,
       "files": [
-        "Tools Index"
+        "Tools Index — not the ledger"
       ]
     },
     {
@@ -488,7 +488,7 @@
     },
     {
       "title": "Craigslist Deal Finder",
-      "status": "works",
+      "status": "incomplete",
       "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://github.com/joshroman922/craigslist-deal-finder",
