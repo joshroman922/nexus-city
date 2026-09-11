@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>NEXUS v2</title>
+<meta name="description" content="Walkable 3D district. Unique buildings hold files, apps, and skills. Gems work live." />
+<style>
+  :root {
+    --bg: #07080c; --surface: #101218; --surface-2: #181b24; --fg: #e8e6e1;
+    --muted: #8b8d96; --subtle: #6a6d76; --accent: #c5d0dc; --accent-fg: #07080c;
+    --border: rgba(232,230,225,.12); --border-strong: rgba(232,230,225,.22);
+    --claude: #e07a3d; --grok: #c8cdd6; --gemini: #3b82f6; --meta: #7c6cff; --glow: #5ec8ff;
+    --font: "Figtree", "Segoe UI", system-ui, sans-serif;
+    --display: "Syne", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--fg); font-family: var(--font); }
+  canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+  #ui { position: absolute; inset: 0; pointer-events: none; }
+  #ui * { pointer-events: auto; }
+  h1, h2 { font-family: var(--display); font-weight: 600; letter-spacing: -0.03em; margin: 0; text-wrap: balance; }
+  button { font: inherit; cursor: pointer; border: 0; }
+  .gate { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
+    background: linear-gradient(to top, var(--bg) 18%, rgba(7,8,12,.55) 55%, transparent 100%);
+    padding: 24px 20px max(72px, env(safe-area-inset-bottom)); }
+  .kicker { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin: 0; }
+  .lede { max-width: 28rem; color: var(--muted); line-height: 1.5; margin: 12px 0 0; }
+  .btn { height: 48px; padding: 0 20px; border-radius: 12px; font-weight: 600; }
+  .btn-primary { background: var(--accent); color: var(--accent-fg); min-width: 176px; }
+  .btn-ghost { background: transparent; color: var(--fg); border: 1px solid var(--border); height: 36px; padding: 0 12px; border-radius: 8px; font-size: 14px; }
+  .btn-solid { background: var(--surface-2); color: var(--fg); border: 1px solid var(--border); width: 44px; height: 44px; border-radius: 12px; }
+  .hud-top { position: absolute; top: max(16px, env(safe-area-inset-top)); left: 16px; right: 16px; display: flex; justify-content: space-between; gap: 12px; }
+  .chip { background: rgba(16,18,24,.95); border: 1px solid var(--border); border-radius: 16px; padding: 8px 12px; }
+  .chip p { margin: 0; }
+  .chip .name { font-family: var(--display); font-size: 14px; }
+  .chip .sub { font-size: 12px; color: var(--muted); }
+  #minimap { width: 108px; height: 108px; border-radius: 50%; border: 1px solid var(--border); background: rgba(16,18,24,.95); }
+  .hud-bot { position: absolute; right: 16px; bottom: max(20px, env(safe-area-inset-bottom)); left: 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+  .ticker { font-size: 12px; color: var(--muted); margin: 0 0 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 58%; }
+  .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+  #stick { position: absolute; left: 20px; bottom: max(20px, env(safe-area-inset-bottom)); width: 132px; height: 132px; border-radius: 50%;
+    border: 1px solid var(--border-strong); background: rgba(16,18,24,.8); display: none; }
+  #knob { position: absolute; top: 50%; left: 50%; width: 48px; height: 48px; margin: -24px 0 0 -24px; border-radius: 50%;
+    background: rgba(197,208,220,.9); border: 1px solid var(--border-strong); }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; max-height: 78dvh; overflow: auto; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 28px 28px 0 0; padding: 12px 16px max(16px, env(safe-area-inset-bottom)); display: none; }
+  .handle { width: 40px; height: 4px; border-radius: 99px; background: var(--border-strong); margin: 0 auto 12px; }
+  .sheet-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+  .list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 8px; }
+  .row { width: 100%; text-align: left; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 12px; color: inherit; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .row small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .form { margin-top: 16px; display: grid; gap: 12px; }
+  .form label { font-size: 12px; color: var(--muted); display: grid; gap: 4px; }
+  .form input, .form textarea, .form select { height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); color: var(--fg); padding: 0 12px; font: inherit; }
+  .form textarea { height: auto; padding: 10px 12px; }
+  .bar { height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden; margin-top: 16px; }
+  .bar > i { display: block; height: 100%; background: var(--accent); width: 0; }
+  .hidden { display: none !important; }
+  @media (pointer: coarse), (max-width: 720px) { #stick { display: block; } .hud-bot { padding-left: 148px; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="ui">
+  <div class="gate" id="gate">
+    <p class="kicker">District 01</p>
+    <h1 style="font-size:48px;line-height:1;margin-top:8px">NEXUS</h1>
+    <p class="lede">A private 3D city for everything you keep and make. Buildings hold files, apps, and skills. Gems work in real time.</p>
+    <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+      <button class="btn btn-primary" id="enter">Enter District</button>
+      <p id="hint" style="margin:0;color:var(--subtle);font-size:14px">WASD to walk. Drag to look. Click a building to open it.</p>
+    </div>
+  </div>
+  <div class="hud-top hidden" id="hud">
+    <div class="chip"><p class="name">NEXUS</p><p class="sub" id="gemCount">0 gems on a job</p></div>
+    <canvas id="minimap" width="216" height="216"></canvas>
+  </div>
+  <div id="stick"><div id="knob"></div></div>
+  <div class="hud-bot hidden" id="hudBot">
+    <p class="ticker" id="ticker"></p>
+    <button class="btn btn-primary" id="openBtn">Open directory</button>
+  </div>
+  <div class="sheet" id="sheet"></div>
+</div>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}</script>
+<script type="module">
+/**
+ * NEXUS v2 — standalone 3D district
+ * Public source: https://raw.githubusercontent.com/joshroman922/nexus-city/main/nexus-v2.html
+ * This is the walkable city: unique buildings, live gems (Claude orange / Grok black / Gemini blue / Meta purple).
+ */
+import * as THREE from "three";
+
+const FACTIONS = {
+  claude: { name: "Claude", color: "#e07a3d", body: "#c45e24", visor: "#ffd2a8" },
+  grok:   { name: "Grok",   color: "#c8cdd6", body: "#121317", visor: "#f2f4f7" },
+  gemini: { name: "Gemini", color: "#3b82f6", body: "#1d4ed8", visor: "#bfdbfe" },
+  meta:   { name: "Meta",   color: "#7c6cff", body: "#4c3ad6", visor: "#ddd6fe" },
+};
+const JOBS = {
+  claude: ["Drafting a brief","Reviewing a file","Tightening copy","Summarizing the vault"],
+  grok:   ["Live district scan","Debugging an app","Researching a lead","Stress-testing a skill"],
+  gemini: ["Indexing media","Clustering notes","Translating a keep","Sorting the archive"],
+  meta:   ["Mapping connections","Syncing a graph","Routing a job","Tagging a project"],
+};
+const BUILDINGS = [
+  { id:"hub",     name:"NEXUS Core",    kind:"directory",    x:0,     z:0,     radius:2.15, heading:"The district directory. Every building, every gem.", accent:"#9eb4c8" },
+  { id:"archive", name:"Archive Spire", kind:"files",        x:16.5,  z:0,     radius:3.15, heading:"Files, scans, and anything you need to keep.", accent:"#5ec8ff" },
+  { id:"foundry", name:"App Foundry",   kind:"apps",         x:-16.5, z:0,     radius:3.55, heading:"Apps you make. Tap one to open its brief.", accent:"#e0a36a" },
+  { id:"forge",   name:"Skill Forge",   kind:"skills",       x:0,     z:-16.5, radius:3.4,  heading:"Skills, playbooks, and ways of working.", accent:"#d9dde6" },
+  { id:"ring",    name:"Gem Ring",      kind:"agents",       x:0,     z:16.5,  radius:3.7,  heading:"The barracks. Gems live and take jobs from here.", accent:"#c5d0dc" },
+  { id:"vault",   name:"The Vault",     kind:"notes",        x:-12.2, z:-12.2, radius:3.0,  heading:"Private notes and things that should stay quiet.", accent:"#c4a574" },
+  { id:"studio",  name:"Studio",        kind:"projects",     x:12.2,  z:-12.2, radius:3.1,  heading:"Work in progress — anything currently being built.", accent:"#8fd0c8" },
+  { id:"lab",     name:"Pulse Lab",     kind:"experiments",  x:-12.2, z:12.2,  radius:3.2,  heading:"Experiments, prototypes, and half-formed ideas.", accent:"#6ec8e0" },
+  { id:"comm",    name:"Comm Needle",   kind:"links",        x:12.2,  z:12.2,  radius:2.4,  heading:"Links out — people, feeds, and channels.", accent:"#e07a3d" },
+];
+const KIND_FOR = { files:"file", apps:"app", skills:"skill", notes:"note", projects:"project", experiments:"project", links:"link" };
+const KIND_LABEL = { file:"File", app:"App", skill:"Skill", note:"Note", project:"Project", link:"Link" };
+const KIND_HEAD = { files:"Files", apps:"Apps", skills:"Skills", agents:"Gems", notes:"Vault", projects:"In progress", experiments:"Lab", links:"Links", directory:"Directory" };
+
+function uid() { return crypto.randomUUID ? crypto.randomUUID() : String(Date.now()+Math.random()); }
+const now = Date.now();
+let items = [
+  { id:"f1", buildingId:"archive", kind:"file", title:"Launch notes", body:"What the district is for: walk files, command gems, keep work in buildings that match it.", createdAt: now-86400000*3 },
+  { id:"f2", buildingId:"archive", kind:"file", title:"Reference pack", body:"Sketches, screenshots, and the original brief for NEXUS.", createdAt: now-86400000*2 },
+  { id:"a1", buildingId:"foundry", kind:"app", title:"NEXUS", body:"This world. A phone-first 3D operating district for files, apps, and gems.", createdAt: now-86400000 },
+  { id:"a2", buildingId:"foundry", kind:"app", title:"Night Ledger", body:"A quiet daily log. Not built yet — parked here so the foundry has a queue.", createdAt: now-3600000*20 },
+  { id:"s1", buildingId:"forge", kind:"skill", title:"Prompt craft", body:"Say the job, the audience, the constraint. Ask the gem to show its work.", createdAt: now-86400000*4 },
+  { id:"s2", buildingId:"forge", kind:"skill", title:"Spatial filing", body:"If it is a keep, Archive. If it is being made, Studio. If it is done and runnable, Foundry.", createdAt: now-86400000 },
+  { id:"n1", buildingId:"vault", kind:"note", title:"Private: district rules", body:"Gems work in the open. The Vault is the only building that stays quiet.", createdAt: now-86400000*5 },
+  { id:"p1", buildingId:"studio", kind:"project", title:"Phone OS world", body:"In progress. Walkable files. Unique buildings. Live gems. This is the build.", createdAt: now-3600000*6 },
+  { id:"e1", buildingId:"lab", kind:"project", title:"Gesture look", body:"Right-side drag to orbit. Tap without drag to pick. Left stick to walk.", createdAt: now-3600000*8 },
+  { id:"l1", buildingId:"comm", kind:"link", title:"Grok", body:"Black gems. Fast, blunt, on-call for live research and debug.", createdAt: now-86400000*2 },
+];
+try {
+  const saved = JSON.parse(localStorage.getItem("nexus-v2-items") || "null");
+  if (Array.isArray(saved) && saved.length) items = saved;
+} catch {}
+function persist() { try { localStorage.setItem("nexus-v2-items", JSON.stringify(items)); } catch {} }
+
+const AGENT_SEEDS = [
+  { id:"sonnet", name:"Sonnet", faction:"claude", lane:9.2,  dir:1,  angle:0.2 },
+  { id:"opus",   name:"Opus",   faction:"claude", lane:10.6, dir:-1, angle:2.4 },
+  { id:"pulse",  name:"Pulse",  faction:"grok",   lane:8.6,  dir:1,  angle:1.1 },
+  { id:"iron",   name:"Iron",   faction:"grok",   lane:11.1, dir:-1, angle:3.6 },
+  { id:"prism",  name:"Prism",  faction:"gemini", lane:9.8,  dir:1,  angle:4.2 },
+  { id:"quill",  name:"Quill",  faction:"gemini", lane:10.2, dir:-1, angle:5.5 },
+  { id:"llama",  name:"Llama",  faction:"meta",   lane:8.9,  dir:1,  angle:0.9 },
+  { id:"horizon",name:"Horizon",faction:"meta",   lane:11.4, dir:-1, angle:2.8 },
+];
+const workSites = BUILDINGS.filter(b => b.id !== "hub");
+const agents = AGENT_SEEDS.map((s, i) => {
+  const t = workSites[i % workSites.length];
+  return { ...s, radius:s.lane, phase:"ring", job: JOBS[s.faction][i % JOBS[s.faction].length],
+    progress:(i*17)%55, targetId:t.id, x:Math.sin(s.angle)*s.lane, z:Math.cos(s.angle)*s.lane,
+    facing: s.angle + (s.dir===1?Math.PI/2:-Math.PI/2), workTime: 5+(i%4) };
+});
+let log = [
+  { faction:"grok", agentName:"Pulse", text:"District scan complete — eight buildings online." },
+  { faction:"claude", agentName:"Sonnet", text:"Launch notes filed in Archive Spire." },
+];
+
+const player = { x:0, y:0, z:8.4, facing:Math.PI, speed:0, camYaw:0, camPitch:0.42 };
+const WALK = 7.2, PLAY_R = 38;
+const keys = new Set();
+let injected = null, joyX=0, joyY=0, lookDx=0, lookDy=0, entered=false, selected=null, nearby=null, adding=false;
+
+window.__controlsTest = {
+  getYaw: () => player.facing,
+  getSpeed: () => player.speed,
+  setKeys: (codes) => { injected = codes; },
+  setSteer: (v) => { joyX = -Math.max(-1, Math.min(1, v)); },
+};
+
+const has = (c) => (injected ? injected.includes(c) : keys.has(c));
+window.addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT") return;
+  keys.add(e.code);
+  if (["KeyW","KeyA","KeyS","KeyD","ArrowUp","ArrowDown","ArrowLeft","ArrowRight","Space","KeyE"].includes(e.code)) e.preventDefault();
+  if ((e.code==="KeyE" || e.code==="Space") && nearby) openPick({ type:"building", id: nearby.id });
+});
+window.addEventListener("keyup", e => keys.delete(e.code));
+window.addEventListener("blur", () => keys.clear());
+
+function steel(color="#1b212c", m=0.7, r=0.32) {
+  return new THREE.MeshStandardMaterial({ color, metalness:m, roughness:r });
+}
+function basic(color) { return new THREE.MeshBasicMaterial({ color }); }
+function mesh(geo, mat, x=0,y=0,z=0, rx=0,ry=0,rz=0) {
+  const o = new THREE.Mesh(geo, mat);
+  o.position.set(x,y,z); o.rotation.set(rx,ry,rz); return o;
+}
+function pad(r) {
+  const m = mesh(new THREE.CircleGeometry(r, 28), steel("#141820",0.55,0.45));
+  m.rotation.x = -Math.PI/2; m.position.y = 0.04; return m;
+}
+function band(w,d,y,color) { return mesh(new THREE.BoxGeometry(w,0.07,d), basic(color), 0,y,0); }
+
+function buildArchive(b) {
+  const g = new THREE.Group();
+  g.add(pad(b.radius+0.4));
+  g.add(mesh(new THREE.CylinderGeometry(2.15,2.35,1.1,8), steel(), 0,0.55,0));
+  g.add(mesh(new THREE.CylinderGeometry(1.7,1.95,1.5,8), steel("#222936"), 0,1.85,0));
+  g.add(mesh(new THREE.CylinderGeometry(1.25,1.55,1.7,8), steel(), 0,3.45,0));
+  g.add(mesh(new THREE.CylinderGeometry(0.85,1.1,1.8,8), steel("#252c3a"), 0,5.2,0));
+  g.add(mesh(new THREE.ConeGeometry(0.72,1.6,8), steel("#303848",0.68,0.28), 0,6.85,0));
+  g.add(mesh(new THREE.TorusGeometry(1.85,0.055,8,32), basic(b.accent), 0,3.5,0, Math.PI/2,0,0));
+  g.add(band(2.5,2.5,1.2,b.accent)); g.add(band(1.7,1.7,4.2,b.accent));
+  return g;
+}
+function buildFoundry(b) {
+  const g = new THREE.Group();
+  g.add(pad(b.radius+0.35));
+  g.add(mesh(new THREE.BoxGeometry(6.1,2.3,3.8), steel("#1a1e27",0.62,0.4), 0,1.15,0));
+  g.add(mesh(new THREE.BoxGeometry(3.4,0.18,4.05), steel("#2a241c",0.55,0.42), 0,2.55,0.15, 0,0,0.42));
+  g.add(mesh(new THREE.BoxGeometry(3.4,0.18,4.05), steel("#322a20",0.55,0.42), 0,2.55,0.15, 0,0,-0.42));
+  g.add(mesh(new THREE.CylinderGeometry(0.28,0.34,2.4,8), steel("#2a2f3a"), -1.7,3.35,-0.9));
+  g.add(mesh(new THREE.CylinderGeometry(0.22,0.28,1.9,8), steel("#2a2f3a"), 1.55,3.1,-0.9));
+  g.add(mesh(new THREE.SphereGeometry(0.22,10,10), basic(b.accent), -1.7,4.6,-0.9));
+  g.add(band(6.2,3.9,1.55,b.accent));
+  g.add(mesh(new THREE.BoxGeometry(1.2,1.6,0.08), basic("#e0a36a"), 2.2,1.2,1.95));
+  return g;
+}
+function buildForge(b) {
+  const g = new THREE.Group();
+  g.add(pad(b.radius+0.3));
+  g.add(mesh(new THREE.BoxGeometry(5.4,0.9,5.4), steel("#1c222d"), 0,0.45,0));
+  g.add(mesh(new THREE.BoxGeometry(4,0.9,4), steel("#242b38"), 0,1.35,0));
+  g.add(mesh(new THREE.BoxGeometry(2.6,0.9,2.6), steel("#1c222d",0.72,0.3), 0,2.25,0));
+  g.add(mesh(new THREE.BoxGeometry(1.4,0.9,1.4), steel("#2c3342",0.68,0.3), 0,3.15,0));
+  const core = mesh(new THREE.OctahedronGeometry(0.7,0), new THREE.MeshStandardMaterial({ color:b.accent, emissive:b.accent, emissiveIntensity:0.65, metalness:0.3, roughness:0.25 }), 0,4.35,0);
+  core.rotation.y = Math.PI/5; g.add(core);
+  g.add(band(4.15,4.15,1.8,b.accent));
+  return g;
+}
+function buildRing(b) {
+  const g = new THREE.Group();
+  g.add(pad(b.radius+0.25));
+  const torus = mesh(new THREE.TorusGeometry(2.55,0.42,10,36), steel("#1a1f29",0.75,0.28), 0,0.55,0, -Math.PI/2,0,0);
+  g.add(torus);
+  const ring = mesh(new THREE.RingGeometry(1.1,1.7,32), new THREE.MeshBasicMaterial({ color:"#5ec8ff", transparent:true, opacity:0.35 }), 0,0.08,0, -Math.PI/2,0,0);
+  g.add(ring);
+  [[2.2,0,"#e07a3d"],[-2.2,0,"#c8cdd6"],[0,2.2,"#3b82f6"],[0,-2.2,"#7c6cff"]].forEach(([x,z,col]) => {
+    g.add(mesh(new THREE.CylinderGeometry(0.16,0.2,2.2,8), steel("#222833"), x,1.1,z));
+    g.add(mesh(new THREE.SphereGeometry(0.2,10,10), basic(col), x,2.3,z));
+  });
+  return g;
+}
+function buildVault(b) {
+  const g = new THREE.Group();
+  g.add(pad(b.radius+0.25));
+  g.add(mesh(new THREE.BoxGeometry(4.6,2.1,3.4), steel("#16141c",0.8,0.28), 0,1.05,0));
+  g.add(mesh(new THREE.BoxGeometry(3.2,0.5,2.4), steel("#1e1c26",0.78,0.3), 0,2.25,0));
+  g.add(mesh(new THREE.CylinderGeometry(0.85,0.85,0.12,24), steel("#2a2418",0.7,0.35), 0,1.1,1.74, Math.PI/2,0,0));
+  g.add(mesh(new THREE.TorusGeometry(0.7,0.07,8,24), basic(b.accent), 0,1.1,1.82, Math.PI/2,0,0));
+  g.add(band(4.7,3.5,1.7,b.accent));
+  return g;
+}
+function buildStudio(b) {
+  const g = new THREE.Group();
+  g.add(pad(b.radius+0.2));
+  g.add(mesh(new THREE.BoxGeometry(0.7,3,0.7), steel("#222833",0.65,0.35), 0,1.5,0));
+  g.add(mesh(new THREE.BoxGeometry(3.6,0.9,2.4), new THREE.MeshStandardMaterial({ color:"#8aa0b0", metalness:0.2, roughness:0.12, transparent:true, opacity:0.28 }), 0.9,3.15,0));
+  g.add(mesh(new THREE.BoxGeometry(3.7,0.12,2.5), steel(), 0.9,2.62,0));
+  g.add(mesh(new THREE.BoxGeometry(3.7,0.12,2.5), steel(), 0.9,3.68,0));
+  g.add(band(3.8,2.55,3.15,b.accent));
+  return g;
+}
+function buildLab(b) {
+  const g = new THREE.Group();
+  g.add(pad(b.radius+0.25));
+  g.add(mesh(new THREE.CylinderGeometry(2.35,2.5,1.4,12), steel("#172028",0.68,0.34), 0,0.7,0));
+  g.add(mesh(new THREE.SphereGeometry(1.85,20,14,0,Math.PI*2,0,Math.PI/2), new THREE.MeshStandardMaterial({ color:"#6ec8e0", emissive:"#163038", metalness:0.15, roughness:0.18, transparent:true, opacity:0.32 }), 0,2.15,0));
+  g.add(mesh(new THREE.OctahedronGeometry(0.45,0), basic(b.accent), 0,1.55,0));
+  g.add(mesh(new THREE.RingGeometry(2,2.2,28), new THREE.MeshBasicMaterial({ color:b.accent, transparent:true, opacity:0.55 }), 0,0.05,0, -Math.PI/2,0,0));
+  return g;
+}
+function buildComm(b) {
+  const g = new THREE.Group();
+  g.add(pad(b.radius+0.35));
+  g.add(mesh(new THREE.CylinderGeometry(1.1,1.35,0.8,8), steel(), 0,0.4,0));
+  g.add(mesh(new THREE.CylinderGeometry(0.14,0.28,11.6,8), steel("#2a3140",0.75,0.28), 0,6.2,0));
+  g.add(mesh(new THREE.SphereGeometry(0.55,12,8), steel("#3a4252",0.6,0.35), 1.15,7.4,0, 0,0,Math.PI/2));
+  g.add(mesh(new THREE.SphereGeometry(0.42,12,8), steel("#3a4252",0.6,0.35), -0.9,9.1,0.4, 0.4,0.6,0));
+  g.add(mesh(new THREE.SphereGeometry(0.16,10,10), basic(b.accent), 0,12.15,0));
+  g.add(band(2.2,2.2,0.85,b.accent));
+  return g;
+}
+function buildHub(b) {
+  const g = new THREE.Group();
+  g.add(mesh(new THREE.RingGeometry(1.55,1.9,40), new THREE.MeshBasicMaterial({ color:"#5ec8ff", transparent:true, opacity:0.5 }), 0,0.05,0, -Math.PI/2,0,0));
+  g.add(mesh(new THREE.OctahedronGeometry(0.95,0), new THREE.MeshStandardMaterial({ color:"#d7e4f0", emissive:"#5ec8ff", emissiveIntensity:0.4, metalness:0.35, roughness:0.2 }), 0,1.55,0));
+  g.add(mesh(new THREE.TorusGeometry(1.25,0.035,8,40), basic(b.accent), 0,1.55,0, Math.PI/2,0,0));
+  return g;
+}
+const BUILD_FN = { archive:buildArchive, foundry:buildFoundry, forge:buildForge, ring:buildRing, vault:buildVault, studio:buildStudio, lab:buildLab, comm:buildComm, hub:buildHub };
+
+function makeRobot(agent) {
+  const pal = FACTIONS[agent.faction];
+  const g = new THREE.Group();
+  g.add(mesh(new THREE.CircleGeometry(0.32,12), new THREE.MeshBasicMaterial({ color:0x000000, transparent:true, opacity:0.35 }), 0,0.02,0, -Math.PI/2,0,0));
+  g.add(mesh(new THREE.BoxGeometry(0.38,0.55,0.28), steel(pal.body, agent.faction==="grok"?0.85:0.45, agent.faction==="grok"?0.25:0.4), 0,0.72,0));
+  g.add(mesh(agent.faction==="claude" ? new THREE.SphereGeometry(0.2,12,12) : new THREE.BoxGeometry(0.28,0.24,0.24), steel(pal.body,0.5,0.35), 0,1.12,0));
+  g.add(mesh(new THREE.BoxGeometry(0.22,0.08,0.04), basic(pal.visor), 0,1.14,0.12));
+  const legL = mesh(new THREE.BoxGeometry(0.1,0.34,0.1), steel(pal.body,0.4,0.45), -0.1,0.28,0);
+  const legR = mesh(new THREE.BoxGeometry(0.1,0.34,0.1), steel(pal.body,0.4,0.45), 0.1,0.28,0);
+  g.add(legL); g.add(legR);
+  if (agent.faction==="grok") {
+    const x1 = mesh(new THREE.BoxGeometry(0.18,0.03,0.02), basic("#f2f4f7"), 0,0.78,0.15); x1.rotation.z = Math.PI/4;
+    const x2 = mesh(new THREE.BoxGeometry(0.18,0.03,0.02), basic("#f2f4f7"), 0,0.78,0.15); x2.rotation.z = -Math.PI/4;
+    g.add(x1); g.add(x2);
+  }
+  if (agent.faction==="gemini") {
+    g.add(mesh(new THREE.OctahedronGeometry(0.07,0), basic(pal.visor), -0.12,1.32,0));
+    g.add(mesh(new THREE.OctahedronGeometry(0.07,0), basic(pal.visor), 0.12,1.32,0));
+  }
+  if (agent.faction==="meta") g.add(mesh(new THREE.TorusGeometry(0.2,0.025,6,16), basic(pal.color), 0,1.28,0, Math.PI/2,0,0));
+  g.add(mesh(new THREE.BoxGeometry(0.08,0.22,0.02), basic(pal.color), 0,0.72,0.15));
+  g.userData = { pick:{ type:"agent", id:agent.id }, agent, legL, legR };
+  return g;
+}
+
+const canvas = document.getElementById("c");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:false, powerPreference:"high-performance" });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+renderer.setClearColor("#07080c");
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x07080c, 0.016);
+const camera = new THREE.PerspectiveCamera(58, 1, 0.12, 140);
+camera.position.set(0,8,16);
+
+scene.add(new THREE.HemisphereLight(0x9aadc0, 0x0a0c10, 0.7));
+const sun = new THREE.DirectionalLight(0xe8eef6, 0.72); sun.position.set(8,18,10); scene.add(sun);
+scene.add(new THREE.PointLight(0x5ec8ff, 1.55, 20));
+
+const ground = mesh(new THREE.CircleGeometry(42,48), steel("#0b0d12",0.4,0.72), 0,0,0, -Math.PI/2,0,0); scene.add(ground);
+scene.add(mesh(new THREE.RingGeometry(7.6,8.05,64), new THREE.MeshBasicMaterial({ color:"#5ec8ff", transparent:true, opacity:0.22 }), 0,0.015,0, -Math.PI/2,0,0));
+scene.add(mesh(new THREE.RingGeometry(20.6,21,64), new THREE.MeshBasicMaterial({ color:"#9eb4c8", transparent:true, opacity:0.14 }), 0,0.02,0, -Math.PI/2,0,0));
+scene.add(mesh(new THREE.CircleGeometry(6.4,40), steel("#12151c",0.6,0.4), 0,0.012,0, -Math.PI/2,0,0));
+scene.add(new THREE.GridHelper(80, 40, 0x1c2430, 0x121820));
+
+function seeded(i){ const x=Math.sin(i*127.1+311.7)*43758.5453; return x-Math.floor(x); }
+const dummy = new THREE.Object3D();
+const skyGeo = new THREE.BoxGeometry(1,1,1);
+const skyMat = steel("#10141c",0.5,0.55);
+const sky = new THREE.InstancedMesh(skyGeo, skyMat, 42);
+for (let i=0;i<42;i++){
+  const a=(i/42)*Math.PI*2+seeded(i)*0.2, r=48+seeded(i+3)*18, h=4+seeded(i+9)*16;
+  dummy.position.set(Math.sin(a)*r, h/2, Math.cos(a)*r);
+  dummy.scale.set(1.6+seeded(i+5)*3.4, h, 1.4+seeded(i+7)*2.8);
+  dummy.rotation.set(0,a,0); dummy.updateMatrix(); sky.setMatrixAt(i, dummy.matrix);
+}
+scene.add(sky);
+const poles = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.06,0.08,2.7,6), steel("#2a3140"), 16);
+const bulbs = new THREE.InstancedMesh(new THREE.SphereGeometry(0.13,8,8), basic("#d7e6f4"), 16);
+for (let i=0;i<16;i++){
+  const a=(i/16)*Math.PI*2, x=Math.sin(a)*21.5, z=Math.cos(a)*21.5;
+  dummy.position.set(x,1.35,z); dummy.rotation.set(0,0,0); dummy.scale.set(1,1,1); dummy.updateMatrix(); poles.setMatrixAt(i, dummy.matrix);
+  dummy.position.set(x,2.75,z); dummy.updateMatrix(); bulbs.setMatrixAt(i, dummy.matrix);
+}
+scene.add(poles); scene.add(bulbs);
+
+const starsGeo = new THREE.BufferGeometry();
+const starPos = new Float32Array(1400*3);
+for (let i=0;i<1400;i++){
+  const r = 40 + Math.random()*50, th=Math.random()*Math.PI*2, ph=Math.random()*Math.PI;
+  starPos[i*3]=r*Math.sin(ph)*Math.cos(th); starPos[i*3+1]=Math.abs(r*Math.cos(ph))+8; starPos[i*3+2]=r*Math.sin(ph)*Math.sin(th);
+}
+starsGeo.setAttribute("position", new THREE.BufferAttribute(starPos,3));
+scene.add(new THREE.Points(starsGeo, new THREE.PointsMaterial({ color:0xffffff, size:0.35, sizeAttenuation:true })));
+
+const hubSpin = mesh(new THREE.TorusGeometry(1.55,0.02,6,40), new THREE.MeshBasicMaterial({ color:"#5ec8ff", transparent:true, opacity:0.7 }), 0,2.35,0, Math.PI/2,0,0);
+scene.add(hubSpin);
+
+BUILDINGS.forEach(b => {
+  const g = (BUILD_FN[b.id] || buildHub)(b);
+  g.position.set(b.x,0,b.z);
+  g.userData.pick = { type:"building", id:b.id };
+  scene.add(g);
+});
+
+const playerBody = new THREE.Group();
+playerBody.add(mesh(new THREE.CircleGeometry(0.4,14), new THREE.MeshBasicMaterial({ color:0x000000, transparent:true, opacity:0.4 }), 0,0.02,0, -Math.PI/2,0,0));
+playerBody.add(mesh(new THREE.BoxGeometry(0.42,0.7,0.3), steel(), 0,0.72,0));
+playerBody.add(mesh(new THREE.SphereGeometry(0.2,12,12), steel("#222833",0.6,0.32), 0,1.18,0));
+playerBody.add(mesh(new THREE.BoxGeometry(0.22,0.08,0.04), basic("#5ec8ff"), 0,1.2,0.14));
+playerBody.add(mesh(new THREE.ConeGeometry(0.08,0.22,8), basic("#9eb4c8"), 0,0.55,-0.22, Math.PI/2,0,0));
+scene.add(playerBody);
+const robotMeshes = agents.map(a => { const m = makeRobot(a); scene.add(m); return m; });
+
+let selectRing = null;
+function setSelectRing(id) {
+  if (selectRing) { scene.remove(selectRing); selectRing.geometry.dispose(); selectRing.material.dispose(); selectRing=null; }
+  const b = BUILDINGS.find(x => x.id===id); if (!b) return;
+  selectRing = mesh(new THREE.RingGeometry(b.radius+0.15, b.radius+0.38, 40), new THREE.MeshBasicMaterial({ color:"#5ec8ff", transparent:true, opacity:0.8 }), b.x, 0.06, b.z, -Math.PI/2,0,0);
+  scene.add(selectRing);
+}
+
+function resolveMove(x,z,radius=0.45){
+  let nx=x,nz=z, dist=Math.hypot(nx,nz);
+  if (dist>PLAY_R){ const s=PLAY_R/dist; nx*=s; nz*=s; }
+  for (const b of BUILDINGS){
+    const dx=nx-b.x, dz=nz-b.z, d=Math.hypot(dx,dz), min=b.radius+radius;
+    if (d<min){ if (d<0.0001){ nx=b.x+min; nz=b.z; } else { const p=min/d; nx=b.x+dx*p; nz=b.z+dz*p; } }
+  }
+  return { x:nx, z:nz };
+}
+function nearestBuilding(x,z,extra=1.7){
+  let best=null, bestD=Infinity;
+  for (const b of BUILDINGS){ const d=Math.hypot(x-b.x,z-b.z)-b.radius; if (d<extra && d<bestD){ bestD=d; best=b; } }
+  return best;
+}
+function pickJob(f, prev){ const list=JOBS[f]; let n=list[Math.floor(Math.random()*list.length)]; if (n===prev && list.length>1) n=list[(list.indexOf(prev)+1)%list.length]; return n; }
+function pickTarget(prev){ const o=workSites.filter(b=>b.id!==prev); return o[Math.floor(Math.random()*o.length)].id; }
+
+function stepAgents(dt){
+  for (const a of agents){
+    const target = BUILDINGS.find(b=>b.id===a.targetId); if (!target) continue;
+    const targetAng = Math.atan2(target.x, target.z);
+    const standR = Math.max(5.5, Math.hypot(target.x,target.z)-target.radius-0.9);
+    if (a.phase==="ring"){
+      a.angle += a.dir*(1.55/a.lane)*dt; a.radius=a.lane;
+      let diff=targetAng-a.angle; while(diff>Math.PI) diff-=Math.PI*2; while(diff<-Math.PI) diff+=Math.PI*2;
+      if (Math.abs(diff)<0.12) a.phase="approach";
+      a.facing = a.angle + (a.dir===1?Math.PI/2:-Math.PI/2);
+    } else if (a.phase==="approach"){
+      a.radius += (standR-a.radius)*Math.min(1,dt*1.15);
+      a.angle += (targetAng-a.angle)*Math.min(1,dt*2);
+      a.facing = Math.atan2(target.x-a.x, target.z-a.z);
+      if (Math.abs(a.radius-standR)<0.12){ a.phase="work"; a.progress=0; }
+    } else if (a.phase==="work"){
+      a.progress = Math.min(100, a.progress+(100/a.workTime)*dt);
+      a.facing = Math.atan2(target.x-a.x, target.z-a.z);
+      if (a.progress>=100){
+        log.unshift({ faction:a.faction, agentName:a.name, text:`${a.job} at ${target.name}.` }); log=log.slice(0,24);
+        a.job=pickJob(a.faction,a.job); a.targetId=pickTarget(a.targetId); a.phase="leave"; a.progress=0;
+      }
+    } else {
+      a.radius += (a.lane-a.radius)*Math.min(1,dt*1.15);
+      if (Math.abs(a.radius-a.lane)<0.12) a.phase="ring";
+      a.facing = a.angle + (a.dir===1?Math.PI/2:-Math.PI/2);
+    }
+    a.x=Math.sin(a.angle)*a.radius; a.z=Math.cos(a.angle)*a.radius;
+  }
+}
+
+const raycaster = new THREE.Raycaster();
+const ndc = new THREE.Vector2();
+function readPick(obj){ let o=obj; while(o){ if (o.userData && o.userData.pick) return o.userData.pick; o=o.parent; } return null; }
+function pickAt(cx,cy){
+  const r=canvas.getBoundingClientRect();
+  ndc.x=((cx-r.left)/r.width)*2-1; ndc.y=-((cy-r.top)/r.height)*2+1;
+  raycaster.setFromCamera(ndc, camera);
+  const hits=raycaster.intersectObject(scene,true);
+  for (const h of hits){ const p=readPick(h.object); if (p) return p; }
+  return null;
+}
+
+const desired = new THREE.Vector3(), look = new THREE.Vector3();
+let introYaw=0, acc=0;
+function resize(){
+  const w=innerWidth, h=innerHeight;
+  renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+}
+addEventListener("resize", resize); resize();
+
+function axes(){
+  let x=joyX, y=joyY;
+  if (has("KeyD")||has("ArrowRight")) x+=1;
+  if (has("KeyA")||has("ArrowLeft")) x-=1;
+  if (has("KeyW")||has("ArrowUp")) y+=1;
+  if (has("KeyS")||has("ArrowDown")) y-=1;
+  const mag=Math.hypot(x,y); if (mag>1){ x/=mag; y/=mag; }
+  const sprint = (has("ShiftLeft")||has("ShiftRight")) ? 1.55 : 1;
+  return { x,y,sprint };
+}
+
+const mapCv = document.getElementById("minimap");
+const mapCtx = mapCv.getContext("2d");
+function drawMap(){
+  const w=mapCv.width, h=mapCv.height, scale=w/84;
+  const map=(x,z)=>[w/2+x*scale, h/2+z*scale];
+  mapCtx.clearRect(0,0,w,h);
+  mapCtx.fillStyle="#0c0e14"; mapCtx.beginPath(); mapCtx.arc(w/2,h/2,w/2-1,0,Math.PI*2); mapCtx.fill();
+  mapCtx.strokeStyle="rgba(158,180,200,0.28)"; mapCtx.lineWidth=1;
+  mapCtx.beginPath(); mapCtx.arc(w/2,h/2,8*scale,0,Math.PI*2); mapCtx.stroke();
+  mapCtx.beginPath(); mapCtx.arc(w/2,h/2,21*scale,0,Math.PI*2); mapCtx.stroke();
+  for (const b of BUILDINGS){ const [mx,mz]=map(b.x,b.z); mapCtx.fillStyle=b.accent; mapCtx.beginPath(); mapCtx.arc(mx,mz,b.id==="hub"?3.4:2.4,0,Math.PI*2); mapCtx.fill(); }
+  for (const a of agents){ const [mx,mz]=map(a.x,a.z); mapCtx.fillStyle=FACTIONS[a.faction].color; mapCtx.beginPath(); mapCtx.arc(mx,mz,1.7,0,Math.PI*2); mapCtx.fill(); }
+  const [px,pz]=map(player.x,player.z);
+  mapCtx.save(); mapCtx.translate(px,pz); mapCtx.rotate(player.camYaw);
+  mapCtx.fillStyle="#e8e6e1"; mapCtx.beginPath(); mapCtx.moveTo(0,-5); mapCtx.lineTo(3.5,4); mapCtx.lineTo(0,2); mapCtx.lineTo(-3.5,4); mapCtx.closePath(); mapCtx.fill();
+  mapCtx.restore();
+}
+
+let hudTick=0;
+function tickHud(){
+  const working = agents.filter(a=>a.phase==="work").length;
+  document.getElementById("gemCount").textContent = working + (working===1?" gem on a job":" gems on a job");
+  const latest=log[0];
+  const ticker=document.getElementById("ticker");
+  if (latest){
+    ticker.innerHTML = `<span class="dot" style="background:${FACTIONS[latest.faction].color}"></span>${latest.agentName} · ${latest.text}`;
+  }
+  const btn=document.getElementById("openBtn");
+  if (nearby){ btn.textContent = "Open "+nearby.name; btn.className="btn btn-primary"; }
+  else { btn.textContent = "Open directory"; btn.className="btn btn-primary"; }
+  drawMap();
+}
+
+function loop(t){
+  const dt = Math.min((loop.prev ? (t-loop.prev)/1000 : 0.016), 0.1);
+  loop.prev = t;
+  const lookX = lookDx, lookY = lookDy; lookDx=0; lookDy=0;
+  if (entered){
+    player.camYaw -= lookX * 0.0052;
+    player.camPitch = Math.max(0.12, Math.min(1.05, player.camPitch + lookY*0.0052));
+  } else {
+    introYaw += dt*0.18; player.camYaw = introYaw; player.camPitch=0.5;
+  }
+  const { x:ax, y:ay, sprint } = entered ? axes() : { x:0,y:0,sprint:1 };
+  const fx=-Math.sin(player.camYaw), fz=-Math.cos(player.camYaw);
+  const rx=Math.cos(player.camYaw), rz=-Math.sin(player.camYaw);
+  const vx=fx*ay+rx*ax, vz=fz*ay+rz*ax;
+  const mag=Math.hypot(vx,vz);
+  player.speed = mag*WALK*sprint;
+  if (mag>0.001){
+    const r=resolveMove(player.x+vx*WALK*sprint*dt, player.z+vz*WALK*sprint*dt);
+    player.x=r.x; player.z=r.z; player.facing=Math.atan2(vx,vz);
+  } else player.speed=0;
+  const bob = mag>0.05 ? Math.sin(t*0.012)*0.04 : 0;
+  playerBody.position.set(player.x, bob, player.z);
+  playerBody.rotation.y = player.facing;
+  const dist = entered ? 8.1 : 13.5, height = entered ? 3.85 : 6.8, cosP=Math.cos(player.camPitch);
+  desired.set(player.x+Math.sin(player.camYaw)*dist*cosP, player.y+height+Math.sin(player.camPitch)*2.4, player.z+Math.cos(player.camYaw)*dist*cosP);
+  camera.position.lerp(desired, 1-Math.exp(-dt*7.5));
+  look.set(player.x,1.15,player.z); camera.lookAt(look);
+  nearby = nearestBuilding(player.x, player.z);
+  acc += dt; const STEP=1/60;
+  while (acc>=STEP){ stepAgents(STEP); acc-=STEP; }
+  robotMeshes.forEach((m,i)=>{
+    const a=agents[i]; m.position.set(a.x,0,a.z); m.rotation.y=a.facing;
+    const moving = a.phase!=="work"; const sw = moving ? Math.sin(t*0.01)*0.35 : 0;
+    m.userData.legL.rotation.x = sw; m.userData.legR.rotation.x = -sw;
+  });
+  hubSpin.rotation.y += dt*0.25;
+  if (selectRing){ const s=1+Math.sin(t*0.003)*0.04; selectRing.scale.set(s,1,s); }
+  hudTick += dt; if (hudTick>0.15){ hudTick=0; if (entered && !selected) tickHud(); }
+  renderer.render(scene, camera);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+const coarse = matchMedia("(pointer: coarse)").matches || innerWidth<720;
+document.getElementById("hint").textContent = coarse
+  ? "Stick to walk. Drag to look. Tap a building to open it."
+  : "WASD to walk. Drag to look. Click a building to open it.";
+
+document.getElementById("enter").onclick = () => {
+  entered = true;
+  document.getElementById("gate").classList.add("hidden");
+  document.getElementById("hud").classList.remove("hidden");
+  document.getElementById("hudBot").classList.remove("hidden");
+  tickHud();
+};
+
+const drag = { id:-1, x:0, y:0, moved:false };
+canvas.addEventListener("pointerdown", e => {
+  if (!entered || selected || e.target.closest("#stick,#sheet,.gate,.hud-top,.hud-bot")) return;
+  drag.id=e.pointerId; drag.x=e.clientX; drag.y=e.clientY; drag.moved=false;
+  canvas.setPointerCapture(e.pointerId);
+});
+canvas.addEventListener("pointermove", e => {
+  if (drag.id!==e.pointerId) return;
+  const dx=e.clientX-drag.x, dy=e.clientY-drag.y;
+  if (!drag.moved && Math.hypot(dx,dy)<8) return;
+  drag.moved=true; lookDx += e.movementX||dx; lookDy += e.movementY||dy; drag.x=e.clientX; drag.y=e.clientY;
+});
+function endDrag(e){
+  if (drag.id!==e.pointerId) return;
+  const tap=!drag.moved; drag.id=-1;
+  if (tap && entered && !selected){ const hit=pickAt(e.clientX,e.clientY); if (hit) openPick(hit); }
+}
+canvas.addEventListener("pointerup", endDrag);
+canvas.addEventListener("pointercancel", endDrag);
+
+const stick=document.getElementById("stick"), knob=document.getElementById("knob");
+let stickId=-1, ox=0, oy=0;
+function stickAt(e){
+  const max=44; let dx=e.clientX-ox, dy=e.clientY-oy; const mag=Math.hypot(dx,dy);
+  if (mag>max){ dx=(dx/mag)*max; dy=(dy/mag)*max; }
+  joyX=dx/max; joyY=-dy/max; knob.style.transform=`translate(${dx}px,${dy}px)`;
+}
+stick.addEventListener("pointerdown", e => {
+  e.stopPropagation(); const r=stick.getBoundingClientRect();
+  ox=r.left+r.width/2; oy=r.top+r.height/2; stickId=e.pointerId; stick.setPointerCapture(e.pointerId); stickAt(e);
+});
+stick.addEventListener("pointermove", e => { if (e.pointerId===stickId){ e.stopPropagation(); stickAt(e); } });
+function stickEnd(e){ if (e.pointerId!==stickId) return; stickId=-1; joyX=0; joyY=0; knob.style.transform="translate(0,0)"; }
+stick.addEventListener("pointerup", stickEnd);
+stick.addEventListener("pointercancel", stickEnd);
+
+document.getElementById("openBtn").onclick = () => openPick({ type:"building", id: nearby ? nearby.id : "hub" });
+
+function closeSheet(){ selected=null; adding=false; document.getElementById("sheet").style.display="none"; setSelectRing(null); if (entered) tickHud(); }
+function buildingById(id){ return BUILDINGS.find(b=>b.id===id); }
+
+function openPick(hit){
+  selected=hit; adding=false;
+  const sheet=document.getElementById("sheet");
+  sheet.style.display="block";
+  if (hit.type==="agent"){
+    const a=agents.find(x=>x.id===hit.id); if (!a) return;
+    const pal=FACTIONS[a.faction], at=buildingById(a.targetId);
+    setSelectRing(null);
+    sheet.innerHTML = `
+      <div class="handle"></div>
+      <div class="sheet-head"><div><p class="kicker">${pal.name}</p><h2 style="font-size:24px;margin-top:4px">${a.name}</h2></div>
+      <button class="btn-solid" id="x">✕</button></div>
+      <p class="lede">${a.job}</p>
+      <div class="bar"><i style="width:${Math.round(a.progress)}%"></i></div>
+      <p style="font-size:12px;color:var(--subtle);margin:8px 0 0">${a.phase==="work"?"Working at":"En route to"} ${at?at.name:"site"} · ${Math.round(a.progress)}%</p>`;
+    sheet.querySelector("#x").onclick=closeSheet;
+    return;
+  }
+  const b=buildingById(hit.id); if (!b) return;
+  setSelectRing(b.id);
+  renderBuilding(b);
+}
+
+function renderBuilding(b){
+  const sheet=document.getElementById("sheet");
+  const canAdd = b.kind!=="directory" && b.kind!=="agents";
+  const held = items.filter(it=>it.buildingId===b.id);
+  let body = `<p class="lede">${b.heading}</p>`;
+  if (b.kind==="directory"){
+    body += `<ul class="list">${BUILDINGS.filter(x=>x.id!=="hub").map(x=>`
+      <li><button class="row" data-go="${x.id}"><span>${x.name}<small>${KIND_HEAD[x.kind]}</small></span>
+      <span style="width:8px;height:8px;border-radius:50%;background:${x.accent}"></span></button></li>`).join("")}</ul>`;
+  } else if (b.kind==="agents"){
+    body += `<ul class="list">${agents.map(a=>`
+      <li><button class="row" data-agent="${a.id}"><span style="display:flex;align-items:center;gap:12px">
+        <span style="width:10px;height:10px;border-radius:50%;background:${FACTIONS[a.faction].color}"></span>
+        <span>${a.name} <small>${FACTIONS[a.faction].name}<br>${a.job}</small></span></span>
+        <span style="font-size:12px;color:var(--subtle)">${Math.round(a.progress)}%</span></button></li>`).join("")}</ul>`;
+  } else if (adding){
+    const kinds = Object.keys(KIND_LABEL);
+    const def = KIND_FOR[b.kind] || "note";
+    body += `<form class="form" id="addForm">
+      <label>Title<input name="title" placeholder="Name it" required /></label>
+      <label>Kind<select name="kind">${kinds.map(k=>`<option value="${k}" ${k===def?"selected":""}>${KIND_LABEL[k]}</option>`).join("")}</select></label>
+      <label>Notes<textarea name="body" rows="3" placeholder="What it is, why it lives here"></textarea></label>
+      <button class="btn btn-primary" type="submit" style="width:100%">Place in building</button>
+    </form>`;
+  } else {
+    body += held.length ? `<ul class="list">${held.map(it=>`
+      <li><button class="row" data-item="${it.id}"><span>${it.title}<small>${KIND_LABEL[it.kind]}</small></span></button>
+      <p class="hidden item-body" id="body-${it.id}" style="padding:0 12px 12px;margin:0;color:var(--muted);font-size:14px">${it.body}<br>
+      <button class="btn-ghost" data-del="${it.id}" style="margin-top:8px">Remove</button></p></li>`).join("")}</ul>`
+      : `<ul class="list"><li class="row" style="display:block">Empty. Add a ${(KIND_LABEL[KIND_FOR[b.kind]||"note"]||"item").toLowerCase()} to this building.</li></ul>`;
+  }
+  sheet.innerHTML = `
+    <div class="handle"></div>
+    <div class="sheet-head"><div><p class="kicker">${KIND_HEAD[b.kind]||b.kind}</p><h2 style="font-size:24px;margin-top:4px">${b.name}</h2></div>
+    <div style="display:flex;gap:8px">${canAdd?`<button class="btn-ghost" id="add">${adding?"Close":"Add"}</button>`:""}
+    <button class="btn-solid" id="x">✕</button></div></div>${body}`;
+  sheet.querySelector("#x").onclick=closeSheet;
+  const addBtn=sheet.querySelector("#add");
+  if (addBtn) addBtn.onclick=()=>{ adding=!adding; renderBuilding(b); };
+  sheet.querySelectorAll("[data-go]").forEach(el => el.onclick=()=>openPick({ type:"building", id:el.dataset.go }));
+  sheet.querySelectorAll("[data-agent]").forEach(el => el.onclick=()=>openPick({ type:"agent", id:el.dataset.agent }));
+  sheet.querySelectorAll("[data-item]").forEach(el => el.onclick=()=>{
+    const p=document.getElementById("body-"+el.dataset.item); if (p) p.classList.toggle("hidden");
+  });
+  sheet.querySelectorAll("[data-del]").forEach(el => el.onclick=()=>{ items=items.filter(it=>it.id!==el.dataset.del); persist(); renderBuilding(b); });
+  const form=sheet.querySelector("#addForm");
+  if (form) form.onsubmit = e => {
+    e.preventDefault();
+    const fd=new FormData(form); const title=String(fd.get("title")||"").trim(); if (!title) return;
+    items.unshift({ id:uid(), buildingId:b.id, kind:fd.get("kind"), title, body:String(fd.get("body")||"").trim()||"No notes yet.", createdAt:Date.now() });
+    persist(); adding=false; renderBuilding(b);
+  };
+}
+</script>
+</body>
+</html>
