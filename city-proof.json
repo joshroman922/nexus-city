@@ -1,8 +1,8 @@
 {
   "nexusProof": 1,
   "exists": true,
-  "city": "NEXUS",
-  "at": "2026-09-11T02:06:43.118Z",
+  "city": "NEXUS Station",
+  "at": "2026-09-11T06:08:25.397Z",
   "buildings": 63,
   "crew": 16,
   "files": 56,
@@ -137,112 +137,112 @@
   ],
   "lastWrites": [
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "city-charter.md",
       "building": "The Library",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
-      "file": "nexus-v2.html",
+      "file": "GitHub",
       "building": "NEXUS",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "Note",
       "building": "NEXUS",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "soma-v1.html",
       "building": "SOMA",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "Talked about",
       "building": "SIGNAL",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "Biophysics folder",
       "building": "Apex Cellular Simulator",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "Note",
       "building": "Apex Cellular Simulator",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "03_SOC_Biohacking",
       "building": "SOC",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "Open app",
       "building": "Gage Block Checker",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "GitHub",
       "building": "Gage Block Checker",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "GitHub",
       "building": "ROUTES Apex",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "Open app",
       "building": "ROUTES Apex",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "kalshi_settlement_core_v2.py",
       "building": "Kalshi 15-min BTC",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "GitHub",
       "building": "Kalshi 15-min BTC",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "Household Ledger",
       "building": "THRESHOLD",
       "by": null
     },
     {
-      "at": "2026-09-10T20:29:03.557Z",
+      "at": "2026-09-11T06:08:25.395Z",
       "kind": "file",
       "file": "ApexForge_Money_Engine.html",
       "building": "ApexForge Money Engine",
@@ -310,7 +310,7 @@
     },
     {
       "title": "The Library",
-      "status": "works",
+      "status": "incomplete",
       "truth": "City building",
       "runs": true,
       "open": null,
@@ -344,7 +344,7 @@
     {
       "title": "Apex Cellular Simulator",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://drive.google.com/drive/folders/1DUKd93pFRjwbFLvzGw0lZoYouBEEWloR",
       "race": "claude",
@@ -356,7 +356,7 @@
     {
       "title": "Apex Terrium",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://github.com/joshroman922/apex-terrium-world-sim",
       "race": "grok",
@@ -367,7 +367,7 @@
     {
       "title": "ApexForge Capability Discovery",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://drive.google.com/drive/folders/1ioq5FomaOJBNKDzx4TsI-hHbIrtlsPxs",
       "race": "grok",
@@ -378,7 +378,7 @@
     {
       "title": "ApexForge Compilers",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://drive.google.com/drive/folders/1Wd3-uVIzcJystQmTiKUzdV_dYejHbabr",
       "race": "grok",
@@ -400,7 +400,7 @@
     {
       "title": "ApexForge Money Engine",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://drive.google.com/file/d/1HWDGljijMhxo5tOTEQXgqyZhTXG4waOO/view",
       "race": "grok",
@@ -412,12 +412,12 @@
     {
       "title": "Asset Factory",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://www.notion.so/39b9030107c2813aaedfc2767ac3c281",
       "race": null,
       "files": [
-        "Tools Index \u2014 not the ledger"
+        "Tools Index — not the ledger"
       ]
     },
     {
@@ -434,7 +434,7 @@
     {
       "title": "Build Lab",
       "status": "incomplete",
-      "truth": "Claude only \u2014 not finished",
+      "truth": "Claude only — not finished",
       "runs": false,
       "open": null,
       "race": "claude",
@@ -489,7 +489,7 @@
     {
       "title": "Craigslist Deal Finder",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://github.com/joshroman922/craigslist-deal-finder",
       "race": "grok",
@@ -500,7 +500,7 @@
     {
       "title": "Dashboard for iPhone",
       "status": "incomplete",
-      "truth": "Opens \u2014 not finished",
+      "truth": "Opens — not finished",
       "runs": false,
       "open": "https://joshroman922.github.io/dashboard/",
       "race": "gemini",
@@ -510,7 +510,7 @@
       ]
     },
     {
-      "title": "Decode-Verify \u2192 Main",
+      "title": "Decode-Verify → Main",
       "status": "talked",
       "truth": "Will not work",
       "runs": false,
@@ -523,7 +523,7 @@
     {
       "title": "GEMINI Sandbox",
       "status": "incomplete",
-      "truth": "Gemini only \u2014 not finished",
+      "truth": "Gemini only — not finished",
       "runs": false,
       "open": null,
       "race": "gemini",
@@ -545,7 +545,7 @@
     {
       "title": "GhostScope",
       "status": "incomplete",
-      "truth": "Gemini only \u2014 not finished",
+      "truth": "Gemini only — not finished",
       "runs": false,
       "open": "https://drive.google.com/file/d/1tdsaZqwEaqImx8Dp4sMDMDP8CxRhLaZ7/view",
       "race": "gemini",
@@ -556,7 +556,7 @@
     {
       "title": "Google Hub",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://github.com/joshroman922/google-hib",
       "race": "gemini",
@@ -613,7 +613,7 @@
     {
       "title": "Kalshi 15-min BTC",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://github.com/joshroman922/kalshi-settlement",
       "race": "grok",
@@ -625,7 +625,7 @@
     {
       "title": "Maintain",
       "status": "incomplete",
-      "truth": "Opens \u2014 not finished",
+      "truth": "Opens — not finished",
       "runs": false,
       "open": "https://joshroman922.github.io/maintain/",
       "race": "grok",
@@ -637,7 +637,7 @@
     {
       "title": "Maintain Protocols",
       "status": "incomplete",
-      "truth": "Artifact only \u2014 will not survive if the chat is gone",
+      "truth": "Artifact only — will not survive if the chat is gone",
       "runs": false,
       "open": null,
       "race": null,
@@ -648,7 +648,7 @@
     {
       "title": "Message Strategist Pro",
       "status": "incomplete",
-      "truth": "Claude only \u2014 not finished",
+      "truth": "Claude only — not finished",
       "runs": false,
       "open": null,
       "race": "claude",
@@ -670,14 +670,13 @@
     {
       "title": "NEXUS",
       "status": "incomplete",
-      "truth": "Source on GitHub \u2014 still incomplete as a hosted app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://github.com/joshroman922/nexus-city",
       "race": "grok",
       "files": [
-        "nexus-v2.html",
-        "Note",
-        "GitHub"
+        "GitHub",
+        "Note"
       ]
     },
     {
@@ -694,7 +693,7 @@
     {
       "title": "Project Sanctum",
       "status": "incomplete",
-      "truth": "Claude only \u2014 not finished",
+      "truth": "Claude only — not finished",
       "runs": false,
       "open": null,
       "race": "claude",
@@ -705,7 +704,7 @@
     {
       "title": "Prompt A/B Harness",
       "status": "incomplete",
-      "truth": "Claude only \u2014 not finished",
+      "truth": "Claude only — not finished",
       "runs": false,
       "open": null,
       "race": "claude",
@@ -716,7 +715,7 @@
     {
       "title": "Prompt Forge",
       "status": "incomplete",
-      "truth": "Claude only \u2014 not finished",
+      "truth": "Claude only — not finished",
       "runs": false,
       "open": null,
       "race": "claude",
@@ -727,7 +726,7 @@
     {
       "title": "ROUTES Apex",
       "status": "incomplete",
-      "truth": "Opens \u2014 not finished",
+      "truth": "Opens — not finished",
       "runs": false,
       "open": "https://joshroman922.github.io/routes/",
       "race": "grok",
@@ -772,7 +771,7 @@
     {
       "title": "SOC",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://drive.google.com/drive/folders/1DUKd93pFRjwbFLvzGw0lZoYouBEEWloR",
       "race": null,
@@ -783,7 +782,7 @@
     {
       "title": "SOMA",
       "status": "incomplete",
-      "truth": "Artifact only \u2014 will not survive if the chat is gone",
+      "truth": "Artifact only — will not survive if the chat is gone",
       "runs": false,
       "open": null,
       "race": "grok",
@@ -794,7 +793,7 @@
     {
       "title": "SpectralScan",
       "status": "incomplete",
-      "truth": "Gemini only \u2014 not finished",
+      "truth": "Gemini only — not finished",
       "runs": false,
       "open": "https://drive.google.com/file/d/1Tmq0w6wD8ExAYLSfzes8Re96ng5uA4GG/view",
       "race": "gemini",
@@ -827,7 +826,7 @@
     {
       "title": "THRESHOLD",
       "status": "incomplete",
-      "truth": "File only \u2014 will not run as an app",
+      "truth": "File only — will not run as an app",
       "runs": false,
       "open": "https://www.notion.so/cff758defbeb43ff857a03427ad951ec",
       "race": "claude",
@@ -849,7 +848,7 @@
     {
       "title": "Visual Storyteller Remix",
       "status": "incomplete",
-      "truth": "Gemini only \u2014 not finished",
+      "truth": "Gemini only — not finished",
       "runs": false,
       "open": "https://drive.google.com/file/d/1BUPbs0cT2MEkAVAqMjrGLdI0SK4cGpUH/view",
       "race": "gemini",

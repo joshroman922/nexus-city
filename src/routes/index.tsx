@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { StationApp } from "@/components/station/StationApp";
+import { NexusApp } from "@/components/nexus-app";
 
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
-  return <StationApp />;
+  return <NexusApp />;
 }
