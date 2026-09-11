@@ -2,7 +2,7 @@
 
 This repo is the **shared world Claude, Gemini, and Meta can actually read**.
 
-It is **not** the 3D city. Chat Claude has no browser. Fetching this file means you can **find** the census. It does not mean you can **see** the city.
+It is **not** a browser for chat Claude. Fetching this file means you can **find** the census. It does not mean you can **see** the 3D station.
 
 ## Fetch this
 
@@ -10,22 +10,30 @@ https://raw.githubusercontent.com/joshroman922/nexus-city/main/city-proof.json
 
 Plain JSON. No JavaScript app. No bot wall.
 
+Playable flatten (no build):
+
+https://raw.githubusercontent.com/joshroman922/nexus-city/main/nexus-v2.html
+
 ## What is in it
 
-- `exists: true`
+- exists: true
 - building count, 16 crew, file count
 - lots with honest verdicts (live / file only / will not work / …)
 - last writes
-- `claims.canSeeTheCity: false`
-- `claims.notionConnected: false`
+- claims.canSeeTheCity: false
+- claims.notionConnected: false
 
 Notion is not the spine. This file is.
+
+## Source
+
+`src/` is the Mars station (TanStack Start + React + Three.js). It runs in a Grok Build preview. Lots Joshua raises on his screen are in the city immediately; they appear in this file the next time it is published.
 
 ## How other AIs add
 
 Return JSON only. No markdown fences.
 
-```json
+```
 {
   "nexusWork": 1,
   "title": "Name of the system",
@@ -41,8 +49,6 @@ Return JSON only. No markdown fences.
 
 Joshua pastes that into Civic Hall (or the Proof desk). A lot appears.
 
-- `"works"` only with a real URL that opens
-- No URL → `incomplete`
-- Talked-about with no file → `talked`
-
-Lots Joshua raises on his screen are in the city immediately. They appear in this file the next time it is published.
+- "works" only with a real URL that opens
+- No URL → incomplete
+- Talked-about with no file → talked

@@ -1,0 +1,1695 @@
+{
+  "lots": [
+    {
+      "title": "Claude Engineering Lab",
+      "status": "works",
+      "truth": "Runs in Claude only",
+      "runs": true,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "No file yet"
+      ],
+      "id": "claude-engineering-lab",
+      "gx": 2,
+      "gz": 7,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Runs in Claude only",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "Gage Block Checker",
+      "status": "works",
+      "truth": "Live",
+      "runs": true,
+      "open": "https://joshroman922.github.io/gage-block-checker/",
+      "race": "grok",
+      "files": [
+        "Open app",
+        "GitHub"
+      ],
+      "id": "gage-block-checker",
+      "gx": 9,
+      "gz": 5,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Live",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "Ghost Hunter",
+      "status": "works",
+      "truth": "Live",
+      "runs": true,
+      "open": "https://joshroman922.github.io/ghost-hunter-app/",
+      "race": "grok",
+      "files": [
+        "Open app",
+        "GitHub"
+      ],
+      "id": "ghost-hunter",
+      "gx": 8,
+      "gz": 5,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Live",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "GrokLink for Joshua",
+      "status": "works",
+      "truth": "Runs in Grok only",
+      "runs": true,
+      "open": "https://github.com/joshroman922/groklink-for-joshua",
+      "race": "grok",
+      "files": [
+        "GitHub"
+      ],
+      "id": "groklink-for-joshua",
+      "gx": 5,
+      "gz": 5,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Runs in Grok only",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "GrokLink Widgy",
+      "status": "works",
+      "truth": "Live",
+      "runs": true,
+      "open": "https://joshroman922.github.io/groklink-widgy-connector/",
+      "race": "grok",
+      "files": [
+        "GitHub",
+        "Open app"
+      ],
+      "id": "groklink-widgy",
+      "gx": 6,
+      "gz": 5,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Live",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "The Library",
+      "status": "works",
+      "truth": "City building",
+      "runs": true,
+      "open": null,
+      "race": null,
+      "files": [
+        "city-charter.md"
+      ],
+      "id": "the-library",
+      "gx": 6,
+      "gz": 7,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "City building",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "The Oracle",
+      "status": "works",
+      "truth": "Runs in Claude only",
+      "runs": true,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "No file yet"
+      ],
+      "id": "the-oracle",
+      "gx": 3,
+      "gz": 6,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Runs in Claude only",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "49-8x Micrometer",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "Talked about"
+      ],
+      "id": "49-8x-micrometer",
+      "gx": 3,
+      "gz": 11,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "Apex Cellular Simulator",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://drive.google.com/drive/folders/1DUKd93pFRjwbFLvzGw0lZoYouBEEWloR",
+      "race": "claude",
+      "files": [
+        "Biophysics folder",
+        "Note"
+      ],
+      "id": "apex-cellular-simulator",
+      "gx": 2,
+      "gz": 6,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "Apex Terrium",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://github.com/joshroman922/apex-terrium-world-sim",
+      "race": "grok",
+      "files": [
+        "GitHub"
+      ],
+      "id": "apex-terrium",
+      "gx": 9,
+      "gz": 3,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "ApexForge Capability Discovery",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://drive.google.com/drive/folders/1ioq5FomaOJBNKDzx4TsI-hHbIrtlsPxs",
+      "race": "grok",
+      "files": [
+        "Drive folder"
+      ],
+      "id": "apexforge-capability-discovery",
+      "gx": 8,
+      "gz": 2,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "ApexForge Compilers",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://drive.google.com/drive/folders/1Wd3-uVIzcJystQmTiKUzdV_dYejHbabr",
+      "race": "grok",
+      "files": [
+        "Drive folder"
+      ],
+      "id": "apexforge-compilers",
+      "gx": 8,
+      "gz": 4,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "ApexForge God-Tier",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": "grok",
+      "files": [
+        "Talked about"
+      ],
+      "id": "apexforge-god-tier",
+      "gx": 9,
+      "gz": 2,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "ApexForge Money Engine",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://drive.google.com/file/d/1HWDGljijMhxo5tOTEQXgqyZhTXG4waOO/view",
+      "race": "grok",
+      "files": [
+        "ApexForge_Money_Engine.html",
+        "Money Engine.html"
+      ],
+      "id": "apexforge-money-engine",
+      "gx": 9,
+      "gz": 4,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "Asset Factory",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://www.notion.so/39b9030107c2813aaedfc2767ac3c281",
+      "race": null,
+      "files": [
+        "Tools Index \u2014 not the ledger"
+      ],
+      "id": "asset-factory",
+      "gx": 5,
+      "gz": 8,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "BTIP-050",
+      "status": "incomplete",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "No file yet"
+      ],
+      "id": "btip-050",
+      "gx": 2,
+      "gz": 10,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "Build Lab",
+      "status": "incomplete",
+      "truth": "Claude only \u2014 not finished",
+      "runs": false,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "No file yet"
+      ],
+      "id": "build-lab",
+      "gx": 1,
+      "gz": 5,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Claude only \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "Calibration software",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "Talked about"
+      ],
+      "id": "calibration-software",
+      "gx": 2,
+      "gz": 11,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "Camera measurement",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "Talked about"
+      ],
+      "id": "camera-measurement",
+      "gx": 2,
+      "gz": 12,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "CaughtByYou",
+      "status": "broken",
+      "truth": "Will not work reliably",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "No file yet"
+      ],
+      "id": "caughtbyyou",
+      "gx": 3,
+      "gz": 10,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work reliably",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "CIRCADIA",
+      "status": "incomplete",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "No file yet"
+      ],
+      "id": "circadia",
+      "gx": 1,
+      "gz": 6,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "Craigslist Deal Finder",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://github.com/joshroman922/craigslist-deal-finder",
+      "race": "grok",
+      "files": [
+        "GitHub"
+      ],
+      "id": "craigslist-deal-finder",
+      "gx": 10,
+      "gz": 4,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "Dashboard for iPhone",
+      "status": "incomplete",
+      "truth": "Opens \u2014 not finished",
+      "runs": false,
+      "open": "https://joshroman922.github.io/dashboard/",
+      "race": "gemini",
+      "files": [
+        "Open app",
+        "GitHub"
+      ],
+      "id": "dashboard-for-iphone",
+      "gx": 12,
+      "gz": 7,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Opens \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "gemini"
+      ],
+      "look": null
+    },
+    {
+      "title": "Decode-Verify \u2192 Main",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "Talked about"
+      ],
+      "id": "decode-verify-main",
+      "gx": 1,
+      "gz": 7,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "GEMINI Sandbox",
+      "status": "incomplete",
+      "truth": "Gemini only \u2014 not finished",
+      "runs": false,
+      "open": null,
+      "race": "gemini",
+      "files": [
+        "GEMINI-SANDBOX-v1.html"
+      ],
+      "id": "gemini-sandbox",
+      "gx": 12,
+      "gz": 8,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Gemini only \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "gemini"
+      ],
+      "look": null
+    },
+    {
+      "title": "Ghost-hunter AR",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "Talked about"
+      ],
+      "id": "ghost-hunter-ar",
+      "gx": 3,
+      "gz": 12,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "GhostScope",
+      "status": "incomplete",
+      "truth": "Gemini only \u2014 not finished",
+      "runs": false,
+      "open": "https://drive.google.com/file/d/1tdsaZqwEaqImx8Dp4sMDMDP8CxRhLaZ7/view",
+      "race": "gemini",
+      "files": [
+        "Opal app"
+      ],
+      "id": "ghostscope",
+      "gx": 11,
+      "gz": 7,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Gemini only \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "gemini"
+      ],
+      "look": null
+    },
+    {
+      "title": "Google Hub",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://github.com/joshroman922/google-hib",
+      "race": "gemini",
+      "files": [
+        "central-command-hub.html",
+        "GitHub",
+        "Note"
+      ],
+      "id": "google-hub",
+      "gx": 12,
+      "gz": 6,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "gemini"
+      ],
+      "look": null
+    },
+    {
+      "title": "HOLDOUT",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": "grok",
+      "files": [
+        "Talked about"
+      ],
+      "id": "holdout",
+      "gx": 10,
+      "gz": 2,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "Innovation Compiler",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "Talked about"
+      ],
+      "id": "innovation-compiler",
+      "gx": 4,
+      "gz": 10,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "Intake",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "Talked about"
+      ],
+      "id": "intake",
+      "gx": 2,
+      "gz": 5,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "ISO 17025 tooling",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "Talked about"
+      ],
+      "id": "iso-17025-tooling",
+      "gx": 4,
+      "gz": 11,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "Kalshi 15-min BTC",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://github.com/joshroman922/kalshi-settlement",
+      "race": "grok",
+      "files": [
+        "kalshi_settlement_core_v2.py",
+        "GitHub"
+      ],
+      "id": "kalshi-15-min-btc",
+      "gx": 8,
+      "gz": 3,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "Maintain",
+      "status": "incomplete",
+      "truth": "Opens \u2014 not finished",
+      "runs": false,
+      "open": "https://joshroman922.github.io/maintain/",
+      "race": "grok",
+      "files": [
+        "GitHub",
+        "Open app"
+      ],
+      "id": "maintain",
+      "gx": 9,
+      "gz": 6,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Opens \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "Maintain Protocols",
+      "status": "incomplete",
+      "truth": "Artifact only \u2014 will not survive if the chat is gone",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "maintain-protocols-v1.html"
+      ],
+      "id": "maintain-protocols",
+      "gx": 4,
+      "gz": 12,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Artifact only \u2014 will not survive if the chat is gone",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "Message Strategist Pro",
+      "status": "incomplete",
+      "truth": "Claude only \u2014 not finished",
+      "runs": false,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "No file yet"
+      ],
+      "id": "message-strategist-pro",
+      "gx": 3,
+      "gz": 5,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Claude only \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "MORPHOS",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": "grok",
+      "files": [
+        "Talked about"
+      ],
+      "id": "morphos",
+      "gx": 10,
+      "gz": 3,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "NEXUS",
+      "status": "incomplete",
+      "truth": "Artifact only \u2014 will not survive if the chat is gone",
+      "runs": false,
+      "open": null,
+      "race": "grok",
+      "files": [
+        "nexus-v2.html",
+        "Note"
+      ],
+      "id": "nexus",
+      "gx": 8,
+      "gz": 7,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Artifact only \u2014 will not survive if the chat is gone",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "Nourish",
+      "status": "incomplete",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "No file yet"
+      ],
+      "id": "nourish",
+      "gx": 3,
+      "gz": 7,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "Project Sanctum",
+      "status": "incomplete",
+      "truth": "Claude only \u2014 not finished",
+      "runs": false,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "Note"
+      ],
+      "id": "project-sanctum",
+      "gx": 0,
+      "gz": 4,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Claude only \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "Prompt A/B Harness",
+      "status": "incomplete",
+      "truth": "Claude only \u2014 not finished",
+      "runs": false,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "No file yet"
+      ],
+      "id": "prompt-a-b-harness",
+      "gx": 0,
+      "gz": 5,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Claude only \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "Prompt Forge",
+      "status": "incomplete",
+      "truth": "Claude only \u2014 not finished",
+      "runs": false,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "No file yet"
+      ],
+      "id": "prompt-forge",
+      "gx": 0,
+      "gz": 6,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Claude only \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "ROUTES Apex",
+      "status": "incomplete",
+      "truth": "Opens \u2014 not finished",
+      "runs": false,
+      "open": "https://joshroman922.github.io/routes/",
+      "race": "grok",
+      "files": [
+        "GitHub",
+        "Open app"
+      ],
+      "id": "routes-apex",
+      "gx": 10,
+      "gz": 5,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Opens \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "SEC Reverse-Split Scanner",
+      "status": "broken",
+      "truth": "Will not work reliably",
+      "runs": false,
+      "open": "https://github.com/joshroman922/sec-reverse-split-scanner",
+      "race": "grok",
+      "files": [
+        "GitHub"
+      ],
+      "id": "sec-reverse-split-scanner",
+      "gx": 7,
+      "gz": 1,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work reliably",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "Sigil Engine",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "Talked about"
+      ],
+      "id": "sigil-engine",
+      "gx": 1,
+      "gz": 9,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "SIGNAL",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": "grok",
+      "files": [
+        "Talked about"
+      ],
+      "id": "signal",
+      "gx": 7,
+      "gz": 3,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "SOC",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://drive.google.com/drive/folders/1DUKd93pFRjwbFLvzGw0lZoYouBEEWloR",
+      "race": null,
+      "files": [
+        "03_SOC_Biohacking"
+      ],
+      "id": "soc",
+      "gx": 1,
+      "gz": 10,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "SOMA",
+      "status": "incomplete",
+      "truth": "Artifact only \u2014 will not survive if the chat is gone",
+      "runs": false,
+      "open": null,
+      "race": "grok",
+      "files": [
+        "soma-v1.html"
+      ],
+      "id": "soma",
+      "gx": 7,
+      "gz": 4,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Artifact only \u2014 will not survive if the chat is gone",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "SpectralScan",
+      "status": "incomplete",
+      "truth": "Gemini only \u2014 not finished",
+      "runs": false,
+      "open": "https://drive.google.com/file/d/1Tmq0w6wD8ExAYLSfzes8Re96ng5uA4GG/view",
+      "race": "gemini",
+      "files": [
+        "Opal app"
+      ],
+      "id": "spectralscan",
+      "gx": 11,
+      "gz": 8,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Gemini only \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "gemini"
+      ],
+      "look": null
+    },
+    {
+      "title": "Stock Catalyst Sniper",
+      "status": "broken",
+      "truth": "Will not work reliably",
+      "runs": false,
+      "open": null,
+      "race": "claude",
+      "files": [
+        "No file yet"
+      ],
+      "id": "stock-catalyst-sniper",
+      "gx": 0,
+      "gz": 7,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work reliably",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "Theatre 1936",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "Talked about"
+      ],
+      "id": "theatre-1936",
+      "gx": 1,
+      "gz": 11,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    },
+    {
+      "title": "THRESHOLD",
+      "status": "incomplete",
+      "truth": "File only \u2014 will not run as an app",
+      "runs": false,
+      "open": "https://www.notion.so/cff758defbeb43ff857a03427ad951ec",
+      "race": "claude",
+      "files": [
+        "Household Ledger"
+      ],
+      "id": "threshold",
+      "gx": 0,
+      "gz": 8,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "File only \u2014 will not run as an app",
+      "domain": null,
+      "usableBy": [
+        "claude"
+      ],
+      "look": null
+    },
+    {
+      "title": "VAULT / Toolbox",
+      "status": "incomplete",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": "grok",
+      "files": [
+        "No file yet"
+      ],
+      "id": "vault-toolbox",
+      "gx": 7,
+      "gz": 5,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "grok"
+      ],
+      "look": null
+    },
+    {
+      "title": "Visual Storyteller Remix",
+      "status": "incomplete",
+      "truth": "Gemini only \u2014 not finished",
+      "runs": false,
+      "open": "https://drive.google.com/file/d/1BUPbs0cT2MEkAVAqMjrGLdI0SK4cGpUH/view",
+      "race": "gemini",
+      "files": [
+        "Opal app"
+      ],
+      "id": "visual-storyteller-remix",
+      "gx": 11,
+      "gz": 9,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Gemini only \u2014 not finished",
+      "domain": null,
+      "usableBy": [
+        "gemini"
+      ],
+      "look": null
+    },
+    {
+      "title": "WebXR exploration",
+      "status": "talked",
+      "truth": "Will not work",
+      "runs": false,
+      "open": null,
+      "race": null,
+      "files": [
+        "Talked about"
+      ],
+      "id": "webxr-exploration",
+      "gx": 1,
+      "gz": 12,
+      "seeded": true,
+      "kind": "lot",
+      "raise": 0,
+      "archive": [],
+      "blurb": "Will not work",
+      "domain": null,
+      "usableBy": [
+        "claude",
+        "grok",
+        "gemini",
+        "meta"
+      ],
+      "look": null
+    }
+  ],
+  "infra": [
+    {
+      "id": "civic-hall",
+      "title": "Civic Hall",
+      "blurb": "Command Ops \u2014 live log of every file",
+      "gx": 7,
+      "gz": 7,
+      "look": "ops"
+    },
+    {
+      "id": "the-table",
+      "title": "The Table",
+      "blurb": "Mess / briefing ring",
+      "gx": 7,
+      "gz": 6,
+      "look": "table"
+    },
+    {
+      "id": "proof-desk",
+      "title": "Proof desk",
+      "blurb": "Airlock customs \u2014 paste packet, stamp census",
+      "gx": 7,
+      "gz": 8,
+      "look": "airlock"
+    },
+    {
+      "id": "archive-vault",
+      "title": "Archive vault",
+      "blurb": "The Library \u2014 already in lots, same hull",
+      "gx": 6,
+      "gz": 7,
+      "look": "archive"
+    },
+    {
+      "id": "command-spine",
+      "title": "Command spine",
+      "blurb": "Truss spine of the station",
+      "gx": 7,
+      "gz": 2,
+      "look": "spine"
+    },
+    {
+      "id": "pad-alpha",
+      "title": "Dock pad Alpha",
+      "blurb": "Empty pad + survey stakes",
+      "gx": 1,
+      "gz": 1,
+      "look": "pad"
+    },
+    {
+      "id": "pad-bravo",
+      "title": "Dock pad Bravo",
+      "blurb": "Empty pad + survey stakes",
+      "gx": 13,
+      "gz": 1,
+      "look": "pad"
+    },
+    {
+      "id": "pad-charlie",
+      "title": "Dock pad Charlie",
+      "blurb": "Empty pad + survey stakes",
+      "gx": 13,
+      "gz": 13,
+      "look": "pad"
+    }
+  ],
+  "crew": [
+    {
+      "name": "Ada",
+      "kind": "agent",
+      "race": "claude",
+      "duty": "file",
+      "task": "Reading the library"
+    },
+    {
+      "name": "Lin",
+      "kind": "agent",
+      "race": "claude",
+      "duty": "build",
+      "task": "Auditing the Lab"
+    },
+    {
+      "name": "Keeper",
+      "kind": "agent",
+      "race": "claude",
+      "duty": "patrol",
+      "task": "Refereeing The Table"
+    },
+    {
+      "name": "Oracle",
+      "kind": "gem",
+      "race": "claude",
+      "duty": "file",
+      "task": "Reading the ledger"
+    },
+    {
+      "name": "Pike",
+      "kind": "bot",
+      "race": "grok",
+      "duty": "build",
+      "task": "Building NEXUS"
+    },
+    {
+      "name": "Ash",
+      "kind": "bot",
+      "race": "grok",
+      "duty": "build",
+      "task": "Wiring Kalshi"
+    },
+    {
+      "name": "Axis",
+      "kind": "bot",
+      "race": "grok",
+      "duty": "patrol",
+      "task": "Holding the axis"
+    },
+    {
+      "name": "Link",
+      "kind": "bot",
+      "race": "grok",
+      "duty": "file",
+      "task": "Running GrokLink"
+    },
+    {
+      "name": "Legion",
+      "kind": "bot",
+      "race": "grok",
+      "duty": "file",
+      "task": "GodForge connector"
+    },
+    {
+      "name": "Build",
+      "kind": "bot",
+      "race": "grok",
+      "duty": "build",
+      "task": "Raising this city"
+    },
+    {
+      "name": "Ori",
+      "kind": "agent",
+      "race": "gemini",
+      "duty": "file",
+      "task": "Indexing Google Hub"
+    },
+    {
+      "name": "Nia",
+      "kind": "agent",
+      "race": "gemini",
+      "duty": "file",
+      "task": "Mapping the cellular KB"
+    },
+    {
+      "name": "Omni",
+      "kind": "gem",
+      "race": "gemini",
+      "duty": "patrol",
+      "task": "Discovering new assets"
+    },
+    {
+      "name": "Logger",
+      "kind": "gem",
+      "race": "gemini",
+      "duty": "file",
+      "task": "Logging the Hub"
+    },
+    {
+      "name": "Kai",
+      "kind": "agent",
+      "race": "meta",
+      "duty": "file",
+      "task": "Connecting Maintain"
+    },
+    {
+      "name": "Wren",
+      "kind": "agent",
+      "race": "meta",
+      "duty": "build",
+      "task": "Linking Ghost Hunter"
+    }
+  ],
+  "claims": {
+    "nothingExists": false,
+    "chatHasNoBrowser": true,
+    "canFindThisFile": true,
+    "canSeeTheCity": false,
+    "notionConnected": false,
+    "notionIsProof": false,
+    "proofIs": "This public GitHub JSON + Civic Hall + a new lot after JSON paste"
+  },
+  "lastWrites": [
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "city-charter.md",
+      "building": "The Library",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "nexus-v2.html",
+      "building": "NEXUS",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "Note",
+      "building": "NEXUS",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "soma-v1.html",
+      "building": "SOMA",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "Talked about",
+      "building": "SIGNAL",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "Biophysics folder",
+      "building": "Apex Cellular Simulator",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "Note",
+      "building": "Apex Cellular Simulator",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "03_SOC_Biohacking",
+      "building": "SOC",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "Open app",
+      "building": "Gage Block Checker",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "GitHub",
+      "building": "Gage Block Checker",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "GitHub",
+      "building": "ROUTES Apex",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "Open app",
+      "building": "ROUTES Apex",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "kalshi_settlement_core_v2.py",
+      "building": "Kalshi 15-min BTC",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "GitHub",
+      "building": "Kalshi 15-min BTC",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "Household Ledger",
+      "building": "THRESHOLD",
+      "by": null
+    },
+    {
+      "at": "2026-09-10T20:29:03.557Z",
+      "kind": "file",
+      "file": "ApexForge_Money_Engine.html",
+      "building": "ApexForge Money Engine",
+      "by": null
+    }
+  ],
+  "buildings": 63,
+  "crewCount": 16,
+  "files": 56,
+  "honesty": "This JSON is the ledger. Chat Claude/Gemini/Meta cannot render the 3D city. Fetch this file to confirm the census. Add by returning nexusWork JSON. Notion is not connected. A missing URL is not a live system.",
+  "freshness": "Snapshot of the shipped inventory. Lots raised on Joshua's screen are in the city immediately; they appear in this file the next time it is published.",
+  "github": {
+    "repo": "https://github.com/joshroman922/nexus-city",
+    "raw": "https://raw.githubusercontent.com/joshroman922/nexus-city/main/city-proof.json",
+    "public": true
+  },
+  "at": "2026-09-10T20:29:03.558Z"
+}
