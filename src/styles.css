@@ -11,6 +11,10 @@
   --color-accent-fg: #140e0c;
   --color-energy: #4f8f7c;
   --color-border: #3a2c26;
+  --color-raised: #30251f;
+  --color-live: #6fcf97;
+  --color-dead: #e0705a;
+  --color-ask: #f2b84b;
   --color-claude: #d4783a;
   --color-grok: #c8cdd4;
   --color-gemini: #4d7cff;
@@ -33,6 +37,11 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-2xl: 28px;
+}
+
+:root {
+  --motion-quick: 140ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @layer base {

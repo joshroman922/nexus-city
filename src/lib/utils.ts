@@ -12,3 +12,7 @@ export function slug(title: string): string {
     .replace(/^-|-$/g, "");
   return s || "lot";
 }
+
+export function uid(prefix = ""): string {
+  return prefix + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+}

@@ -1,0 +1,83 @@
+name: NEXUS worker
+# A job is an issue labelled `nexus-job`, filed from inside the city.
+# Only the repo owner can start, steer, approve or reject a job.
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: nexus-job-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  work:
+    if: >-
+      github.event.sender.login == github.repository_owner &&
+      !github.event.issue.pull_request &&
+      contains(github.event.issue.body, 'nexus:job')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: station
+          sparse-checkout: |
+            worker
+            src/data/repos.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - id: route
+        run: node station/worker/nexus-worker.mjs route
+        env:
+          JOBS_TOKEN: ${{ github.token }}
+          NEXUS_PAT: ${{ secrets.NEXUS_PAT }}
+
+      - if: steps.route.outputs.action == 'run'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/${{ steps.route.outputs.repo }}
+          ref: ${{ steps.route.outputs.ref }}
+          token: ${{ secrets.NEXUS_PAT }}
+          persist-credentials: false
+          path: target
+
+      - if: steps.route.outputs.action == 'run'
+        run: npm install -g @anthropic-ai/claude-code
+
+      # Claude only gets its own login token here — no GitHub credentials.
+      - if: steps.route.outputs.action == 'run'
+        working-directory: target
+        run: |
+          claude -p "$(cat "$RUNNER_TEMP/prompt.md")" \
+            --max-turns 80 \
+            --permission-mode acceptEdits \
+            --allowedTools "Bash,Read,Edit,Write,Glob,Grep,WebFetch,WebSearch" \
+            --output-format json > "$RUNNER_TEMP/claude.json"
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+
+      - if: steps.route.outputs.action == 'run'
+        run: node station/worker/nexus-worker.mjs finish
+        env:
+          JOBS_TOKEN: ${{ github.token }}
+          NEXUS_PAT: ${{ secrets.NEXUS_PAT }}
+          ISSUE: ${{ steps.route.outputs.issue }}
+          REPO: ${{ steps.route.outputs.repo }}
+          REF: ${{ steps.route.outputs.ref }}
+          TARGET_DIR: ${{ github.workspace }}/target
+
+      - if: failure() && steps.route.outputs.issue
+        run: node station/worker/nexus-worker.mjs fail
+        env:
+          JOBS_TOKEN: ${{ github.token }}
+          ISSUE: ${{ steps.route.outputs.issue }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

@@ -6,10 +6,10 @@ import {
   Stamp,
   Users,
   Wrench,
-  X,
   Hexagon,
   Factory,
   Plane,
+  HardHat,
 } from "lucide-react";
 import { CENSUS, CLAIMS, INFRA } from "@/lib/census";
 import { crewLine, tableTalk } from "@/lib/dialogue";
@@ -23,6 +23,9 @@ import {
   useNexus,
 } from "@/lib/store";
 import { cn } from "@/lib/utils";
+import { Panel } from "./panel";
+import { SendWorker, WorkPanel } from "./work";
+import { WAITING, useJobs } from "@/lib/jobs";
 import type { Lot, Race } from "@/lib/types";
 
 export function Overlays() {
@@ -62,6 +65,7 @@ export function Overlays() {
       if (e.code === "Digit3") setPanel("table");
       if (e.code === "Digit4") setPanel("proof");
       if (e.code === "Digit5") setPanel("forge");
+      if (e.code === "Digit6") setPanel("work");
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -91,6 +95,7 @@ export function Overlays() {
           {panel === "factory" && <AssetFactory lot={lots.find((l) => l.id === "asset-factory")} />}
           {panel === "archive" && <Archive lots={lots} />}
           {panel === "roster" && <CrewTalk lots={lots} crew={crew} focus={talkingCrew} />}
+          {panel === "work" && <WorkPanel />}
         </>
       )}
     </>
@@ -196,7 +201,9 @@ function Dock({
   panel: ReturnType<typeof useNexus.getState>["panel"];
   setPanel: (p: typeof panel) => void;
 }) {
+  const waiting = useJobs((s) => s.jobs.filter((j) => WAITING.includes(j.state)).length);
   const items = [
+    { id: "work" as const, label: "Work", icon: HardHat },
     { id: "ops" as const, label: "Ops", icon: Radio },
     { id: "archive" as const, label: "Archive", icon: BookOpen },
     { id: "table" as const, label: "Table", icon: Users },
@@ -216,10 +223,15 @@ function Dock({
             type="button"
             onClick={() => setPanel(on ? null : it.id)}
             className={cn(
-              "flex h-11 min-w-11 flex-col items-center justify-center rounded-lg px-2.5 text-[10px] uppercase tracking-wider transition-colors duration-[var(--motion-quick)]",
+              "relative flex h-11 min-w-11 flex-col items-center justify-center rounded-lg px-2.5 text-[10px] uppercase tracking-wider transition-colors duration-[var(--motion-quick)]",
               on ? "bg-raised text-fg" : "text-muted hover:text-fg",
             )}
           >
+            {it.id === "work" && waiting > 0 && (
+              <span className="absolute right-0.5 top-0.5 grid min-w-4 place-items-center rounded-full bg-ask px-1 font-mono text-[9px] leading-4 text-bg">
+                {waiting}
+              </span>
+            )}
             <Icon className="size-4" strokeWidth={1.6} />
             <span className="hidden sm:block">{it.label}</span>
           </button>
@@ -276,49 +288,6 @@ function TouchStick() {
         probe?.setKeys(codes);
       }}
     />
-  );
-}
-
-function Panel({
-  title,
-  kicker,
-  children,
-  onClose,
-  wide,
-}: {
-  title: string;
-  kicker?: string;
-  children: React.ReactNode;
-  onClose: () => void;
-  wide?: boolean;
-}) {
-  return (
-    <aside
-      className={cn(
-        "absolute right-3 top-20 z-20 flex max-h-[min(72dvh,640px)] flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-[0_12px_40px_rgba(0,0,0,0.35)]",
-        wide ? "w-[min(100%-1.5rem,28rem)]" : "w-[min(100%-1.5rem,22rem)]",
-      )}
-    >
-      <header className="flex items-start justify-between gap-3 border-b border-border px-4 py-3">
-        <div>
-          {kicker && (
-            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
-              {kicker}
-            </div>
-          )}
-          <h2 className="font-display text-xl tracking-wide text-fg">{title}</h2>
-        </div>
-        <button
-          type="button"
-          aria-label="Close"
-          onClick={onClose}
-          className="grid size-9 place-items-center rounded-md text-muted hover:bg-raised hover:text-fg"
-        >
-          <X className="size-4" />
-        </button>
-      </header>
-      <div className="min-h-0 flex-1 overflow-y-auto px-4 py-3">{children}</div>
-    </aside>
   );
 }
 
@@ -430,6 +399,7 @@ function ModuleInspect({ lot, crew }: { lot: Lot; crew: ReturnType<typeof crewOf
             </button>
           )}
         </div>
+        <SendWorker lot={lot} />
       </div>
     </Panel>
   );

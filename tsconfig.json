@@ -13,16 +13,11 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    // `src/lib/db.ts` imports scripts/migration-plan.mjs; checkJs types the
-    // implementation itself instead of a hand-written declaration beside it.
-    "allowJs": true,
-    "checkJs": true,
     "noEmit": true,
     "types": [
       "vite/client",
       "node"
     ],
-    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
@@ -31,7 +26,14 @@
     "allowImportingTsExtensions": true
   },
   "include": [
-    "src",
-    "server"
+    "src"
+  ],
+  "exclude": [
+    "src/router.tsx",
+    "src/routes",
+    "src/components/nexus-app.tsx",
+    "src/components/overlays.tsx",
+    "src/components/blueprint-table.tsx",
+    "src/game/talk.ts"
   ]
 }

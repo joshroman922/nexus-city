@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef } from "react";
 import { INFRA } from "@/lib/census";
+import { ACTIVE, startJobSync, useJobs } from "@/lib/jobs";
 import { crewOf, lotsOf, useNexus } from "@/lib/store";
-import type { RenderMod, StationHandle, StationSync } from "@/game/types";
+import type { RenderMod, StationHandle, StationSync } from "@/game/station";
 import { Overlays } from "./overlays";
 
 function toModules(lots: ReturnType<typeof lotsOf>): RenderMod[] {
@@ -55,7 +56,15 @@ export function StationApp() {
     () => lotsOf({ extraLots, raise, archive }),
     [extraLots, raise, archive],
   );
-  const crew = useMemo(() => crewOf({ assigned }), [assigned]);
+  const jobs = useJobs((s) => s.jobs);
+  // Live jobs override manual posts: a worker on a job walks to its module.
+  const crew = useMemo(() => {
+    const onJob: Record<string, string> = {};
+    for (const j of [...jobs].reverse()) if (ACTIVE.includes(j.state) && j.lot) onJob[j.worker] = j.lot;
+    return crewOf({ assigned: { ...assigned, ...onJob } });
+  }, [assigned, jobs]);
+
+  useEffect(() => startJobSync(), []);
 
   useEffect(() => {
     void Promise.resolve(useNexus.persist.rehydrate());

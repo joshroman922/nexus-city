@@ -895,3 +895,4 @@ function disposeGroup(obj: THREE.Object3D) {
     else if (mat) (mat as THREE.Material).dispose();
   });
 }
+export type StationHandle = ReturnType<typeof mountStation>;

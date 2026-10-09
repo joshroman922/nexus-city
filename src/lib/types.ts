@@ -99,4 +99,5 @@ export type PanelId =
   | "factory"
   | "roster"
   | "archive"
+  | "work"
   | null;

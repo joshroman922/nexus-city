@@ -1,0 +1,20 @@
+{
+  "owner": "joshroman922",
+  "jobsRepo": "nexus-city",
+  "repos": {
+    "maintain": "maintain",
+    "maintain-protocols": "maintain",
+    "routes-apex": "routes",
+    "sec-reverse-split-scanner": "sec-reverse-split-scanner",
+    "nexus": "nexus-city",
+    "kalshi-15-min-btc": "kalshi-settlement",
+    "gage-block-checker": "gage-block-checker",
+    "ghost-hunter": "ghost-hunter-app",
+    "craigslist-deal-finder": "craigslist-deal-finder",
+    "dashboard-for-iphone": "dashboard",
+    "google-hub": "google-hib",
+    "groklink-widgy": "groklink-widgy-connector",
+    "apex-terrium": "apex-terrium-world-sim",
+    "groklink-for-joshua": "groklink-for-joshua"
+  }
+}

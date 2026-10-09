@@ -1,0 +1,62 @@
+name: NEXUS patrol
+# Crew walk every repo and file proposals (nx:proposed). Nothing changes
+# until Joshua says go from the city.
+on:
+  schedule:
+    - cron: "47 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: nexus-patrol
+  cancel-in-progress: true
+
+jobs:
+  patrol:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PATROL_DIR: ${{ github.workspace }}/patrol
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: station
+          sparse-checkout: |
+            worker
+            src/data/repos.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Clone repos (read-only, no credentials kept)
+        run: |
+          mkdir -p "$PATROL_DIR"
+          for repo in $(node -e 'const m=require("./station/src/data/repos.json");console.log([...new Set(Object.values(m.repos))].join(" "))'); do
+            git clone -q --depth 1 "https://x-access-token:${NEXUS_PAT}@github.com/${{ github.repository_owner }}/$repo.git" "$PATROL_DIR/$repo" \
+              && git -C "$PATROL_DIR/$repo" remote remove origin \
+              || echo "skip $repo"
+          done
+          node station/worker/patrol.mjs prompt
+        env:
+          NEXUS_PAT: ${{ secrets.NEXUS_PAT }}
+
+      - run: npm install -g @anthropic-ai/claude-code
+
+      - name: Patrol
+        working-directory: patrol
+        run: |
+          claude -p "$(cat prompt.md)" \
+            --max-turns 120 \
+            --permission-mode acceptEdits \
+            --allowedTools "Read,Glob,Grep,Write,Bash(ls:*),Bash(git log:*),Bash(wc:*)" \
+            --output-format json > "$RUNNER_TEMP/patrol.json"
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+
+      - run: node station/worker/patrol.mjs file
+        env:
+          JOBS_TOKEN: ${{ github.token }}
